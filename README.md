@@ -56,3 +56,34 @@ Install torch & torchvision
 	
 ### Not required but good library
 sudo python3 -m pip install -U jetson-stats==3.1.4
+
+Generate wts file from pt file
+=============
+Yolov5s.pt and Yolov5n.pt are already provided in the repo. But if you want you can download any other version of the yolov5 model. Then run below command to convert .pt file into .wts file 
+
+	$ cd JetsonYoloV5
+	$ python3 gen_wts.py -w yolov5s.pt -o yolov5s.wts
+	
+Make
+=============
+Create a build directory inside yolov5. Copy and paste generated wts file into build directory and run below commands. If using custom model, make sure to update kNumClas in yolov5/src/config.h
+
+	$ cd yolov5/
+	$ mkdir build
+	$ cd build
+	$ cp ../../yolov5s.wts .
+	$ cmake ..
+	$ make 
+	
+Build Engine file 
+=============
+
+    $ ./yolov5_det -s yolov5s.wts yolov5s.engine s
+	
+
+Testing Engine file 
+=============
+
+	$ ./yolov5_det -d yolov5s.engine ../images
+	
+This will do inferencing over images and output will be saved in build directory.
