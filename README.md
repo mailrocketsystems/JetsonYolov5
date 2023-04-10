@@ -9,6 +9,8 @@ Jetson Nano:
 
 Jetson Xavier:
 
+<img src="out.jpg" width="128"/>
+
 Install Libraries
 =============
 Please install below libraries::
