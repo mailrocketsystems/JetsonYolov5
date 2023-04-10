@@ -64,7 +64,6 @@ sudo python3 -m pip install -U jetson-stats==3.1.4
 This marks the installation of all the required libraries.
 
 -----------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------
 
 Generate wts file from pt file
 =============
@@ -96,6 +95,8 @@ Testing Engine file
 	$ ./yolov5_det -d yolov5s.engine ../images
 	
 This will do inferencing over images and output will be saved in build directory.
+
+-----------------------------------------------------------------------------------------
 
 Python Object Detection
 =============
