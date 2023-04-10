@@ -54,5 +54,5 @@ Install torch & torchvision
 	$ cd torchvision
 	$ sudo python3 setup.py install 
 	
-# Not required but good library
+### Not required but good library
 sudo python3 -m pip install -U jetson-stats==3.1.4
