@@ -95,3 +95,9 @@ Testing Engine file
 	$ ./yolov5_det -d yolov5s.engine ../images
 	
 This will do inferencing over images and output will be saved in build directory.
+
+Python Object Detection
+=============
+Use `app.py` to do inferencing on any video file or camera.
+
+	$ python3 app.py
