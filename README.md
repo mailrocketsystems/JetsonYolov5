@@ -5,7 +5,7 @@ This repository contains step by step guide to build and convert YoloV5 model in
 
 Please install Jetpack OS version 4.6 as mentioned by Nvidia and follow below steps. Please follow each steps exactly mentioned in the video links below :
 
-Jetson Nano: 
+Follow this video to build it on Jetson Nano: https://www.youtube.com/watch?v=ErWC3nBuV6k
 
 Jetson Xavier:
 
