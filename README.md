@@ -59,6 +59,9 @@ Install torch & torchvision
 ### Not required but good library
 sudo python3 -m pip install -U jetson-stats==3.1.4
 
+This marks the installation of all the required libraries.
+
+
 Generate wts file from pt file
 =============
 Yolov5s.pt and Yolov5n.pt are already provided in the repo. But if you want you can download any other version of the yolov5 model. Then run below command to convert .pt file into .wts file 
