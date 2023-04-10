@@ -61,6 +61,7 @@ sudo python3 -m pip install -U jetson-stats==3.1.4
 
 This marks the installation of all the required libraries.
 
+-----------------------------------------------------------------------------------------
 
 Generate wts file from pt file
 =============
