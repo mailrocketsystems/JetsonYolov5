@@ -8,9 +8,10 @@ cap = cv2.VideoCapture("videos/testvideo.mp4")
 while True:
     ret, frame = cap.read()
     frame = imutils.resize(frame, width=600)
-    detections = model.Inference(frame)
+    detections, t = model.Inference(frame)
     # for obj in detections:
     #    print(obj['class'], obj['conf'], obj['box'])
+    # print("FPS: {}".format(1/t))
     cv2.imshow("Output", frame)
     key = cv2.waitKey(1)
     if key == ord('q'):

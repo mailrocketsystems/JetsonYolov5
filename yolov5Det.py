@@ -5,6 +5,7 @@ import pycuda.autoinit
 import random
 import ctypes
 import pycuda.driver as cuda
+import time
 
 
 EXPLICIT_BATCH = 1 << (int)(trt.NetworkDefinitionCreationFlag.EXPLICIT_BATCH)
@@ -91,9 +92,11 @@ class YoloV5TRT():
         stream = cuda.Stream()
         self.context = self.engine.create_execution_context()
         cuda.memcpy_htod_async(cuda_inputs[0], host_inputs[0], stream)
+        t1 = time.time()
         self.context.execute_async(self.batch_size, bindings, stream_handle=stream.handle)
         cuda.memcpy_dtoh_async(host_outputs[0], cuda_outputs[0], stream)
         stream.synchronize()
+        t2 = time.time()
         output = host_outputs[0]
                 
         for i in range(self.batch_size):
@@ -108,7 +111,7 @@ class YoloV5TRT():
             det["box"] = box 
             det_res.append(det)
             self.PlotBbox(box, img, label="{}:{:.2f}".format(self.categories[int(result_classid[j])], result_scores[j]),)
-        return det_res
+        return det_res, t2-t1
 
     def PostProcess(self, output, origin_h, origin_w):
         num = int(output[0])
