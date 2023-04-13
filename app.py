@@ -11,7 +11,7 @@ while True:
     detections, t = model.Inference(frame)
     # for obj in detections:
     #    print(obj['class'], obj['conf'], obj['box'])
-    # print("FPS: {}".format(1/t))
+    # print("FPS: {} sec".format(1/t))
     cv2.imshow("Output", frame)
     key = cv2.waitKey(1)
     if key == ord('q'):
