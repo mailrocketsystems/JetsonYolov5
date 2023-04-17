@@ -103,3 +103,5 @@ Python Object Detection
 Use `app.py` to do inferencing on any video file or camera.
 
 	$ python3 app.py
+
+If you have custom model, make sure to update categories as per your classes in `yolovDet.py` .
