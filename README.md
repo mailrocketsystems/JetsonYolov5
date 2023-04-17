@@ -11,7 +11,7 @@ Object Detection YoloV5 TensorRT Engine on Jetson Nano: https://www.youtube.com/
 
 Jetson Xavier:
 
-<img src="out.jpg" width="800"/>
+<img src="videos/out.jpg" width="800"/>
 
 Install Libraries
 =============
