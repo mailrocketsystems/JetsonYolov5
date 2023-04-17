@@ -1,10 +1,13 @@
 import sys
 import cv2 
 import imutils
-from yolov5Det import YoloV5TRT
+from yolovDet import YoloTRT
 
-model = YoloV5TRT(library="yolov5/build/libmyplugins.so", engine="yolov5/build/yolov5s.engine", conf=0.5)
+# use path for library and engine file
+model = YoloTRT(library="yolov5/build/libmyplugins.so", engine="yolov5/build/yolov5s.engine", conf=0.5, yolo_ver="v5")
+
 cap = cv2.VideoCapture("videos/testvideo.mp4")
+
 while True:
     ret, frame = cap.read()
     frame = imutils.resize(frame, width=600)

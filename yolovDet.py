@@ -16,12 +16,13 @@ cuda_outputs = []
 bindings = []
 
 
-class YoloV5TRT():
-    def __init__(self, library, engine, conf):
+class YoloTRT():
+    def __init__(self, library, engine, conf, yolo_ver):
         self.CONF_THRESH = conf 
         self.IOU_THRESHOLD = 0.4
         self.LEN_ALL_RESULT = 38001
         self.LEN_ONE_RESULT = 38
+        self.yolo_version = yolo_ver
         self.categories = ["person", "bicycle", "car", "motorcycle", "airplane", "bus", "train", "truck", "boat", "traffic light",
             "fire hydrant", "stop sign", "parking meter", "bench", "bird", "cat", "dog", "horse", "sheep", "cow",
             "elephant", "bear", "zebra", "giraffe", "backpack", "umbrella", "handbag", "tie", "suitcase", "frisbee",
@@ -115,9 +116,12 @@ class YoloV5TRT():
 
     def PostProcess(self, output, origin_h, origin_w):
         num = int(output[0])
-        pred = np.reshape(output[1:], (-1, self.LEN_ONE_RESULT))[:num, :]
-        pred = pred[:, :6]
-        # Do nms
+        if self.yolo_version == "v5":
+            pred = np.reshape(output[1:], (-1, self.LEN_ONE_RESULT))[:num, :]
+            pred = pred[:, :6]
+        elif self.yolo_version == "v7":
+            pred = np.reshape(output[1:], (-1, 6))[:num, :]
+        
         boxes = self.NonMaxSuppression(pred, origin_h, origin_w, conf_thres=self.CONF_THRESH, nms_thres=self.IOU_THRESHOLD)
         result_boxes = boxes[:, :4] if len(boxes) else np.array([])
         result_scores = boxes[:, 4] if len(boxes) else np.array([])
