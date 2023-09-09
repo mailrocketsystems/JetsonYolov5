@@ -9,9 +9,6 @@ Build YoloV5 TensorRT Engine on Jetson Nano: https://www.youtube.com/watch?v=ErW
 
 Object Detection YoloV5 TensorRT Engine on Jetson Nano: https://www.youtube.com/watch?v=-Vu65N1NRWw
 
-Jetson Xavier:
-
-<img src="videos/out.jpg" width="800"/>
 
 Install Libraries
 =============
@@ -65,14 +62,14 @@ This marks the installation of all the required libraries.
 
 ------------------------------------------------------------------------------------------
 
-Generate wts file from pt file
+Generate wts file from pt file (Detection)
 =============
 Yolov5s.pt and Yolov5n.pt are already provided in the repo. But if you want you can download any other version of the yolov5 model. Then run below command to convert .pt file into .wts file 
 
 	$ cd JetsonYoloV5
 	$ python3 gen_wts.py -w yolov5s.pt -o yolov5s.wts
 	
-Make
+Make (Detection)
 =============
 Create a build directory inside yolov5. Copy and paste generated wts file into build directory and run below commands. If using custom model, make sure to update kNumClas in yolov5/src/config.h
 
@@ -83,16 +80,47 @@ Create a build directory inside yolov5. Copy and paste generated wts file into b
 	$ cmake ..
 	$ make 
 	
-Build Engine file 
+Build Engine file (Detection)
 =============
 
     $ ./yolov5_det -s yolov5s.wts yolov5s.engine s
 	
 
-Testing Engine file 
+Testing Engine file (Detection)
 =============
 
 	$ ./yolov5_det -d yolov5s.engine ../images
+
+------------------------------------------------------------------------------------------
+
+Generate wts file from pt file (Segmentation)
+=============
+Yolov5s-seg.pt and Yolov5n-seg.pt are already provided in the repo. But if you want you can download any other version of the yolov5 model. Then run below command to convert .pt file into .wts file 
+
+	$ cd JetsonYoloV5
+	$ python3 gen_wts.py -w yolov5s-seg.pt -o yolov5s-seg.wts
+	
+Make (Segmentation)
+=============
+Create a build directory inside yolov5. Copy and paste generated wts file into build directory and run below commands. If using custom model, make sure to update kNumClas in yolov5/src/config.h
+
+	$ cd yolov5/
+	$ mkdir build
+	$ cd build
+	$ cp ../../yolov5s-seg.wts .
+	$ cmake ..
+	$ make 
+	
+Build Engine file (Segmentation)
+=============
+
+    $ ./yolov5_seg -s yolov5s-seg.wts yolov5s-seg.engine s
+	
+
+Testing Engine file (Segmentation)
+=============
+
+	$ ./yolov5_seg -d yolov5s.engine ../images
 	
 This will do inferencing over images and output will be saved in build directory.
 
@@ -100,8 +128,23 @@ This will do inferencing over images and output will be saved in build directory
 
 Python Object Detection
 =============
-Use `app.py` to do inferencing on any video file or camera.
+Use `app_detection.py` to do inferencing on any video file or camera.
 
-	$ python3 app.py
+	$ python3 app_detection.py
 
 If you have custom model, make sure to update categories as per your classes in `yolovDet.py` .
+Change the video path inside `app_detection.py` to test a different video. 
+
+-----------------------------------------------------------------------------------------
+
+Python Object Segmentation
+=============
+Use `app_segmentation.py` to do inferencing on any video file or camera. 
+
+	$ python3 app_segmentation.py
+
+If you have custom model, make sure to update categories as per your classes in `yolovSeg.py` .
+Change the video path inside `app_segmentation.py` to test a different video.  
+
+-----------------------------------------------------------------------------------------
+
