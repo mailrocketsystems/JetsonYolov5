@@ -143,7 +143,7 @@ Use `app_segmentation.py` to do inferencing on any video file or camera.
 
 	$ python3 app_segmentation.py
 
-If you have custom model, make sure to update categories as per your classes in `yolovSeg.py` .
+If you have custom model, make sure to update categories as per your classes in `app_segmentation.py` .
 Change the video path inside `app_segmentation.py` to test a different video.  
 
 -----------------------------------------------------------------------------------------
