@@ -120,7 +120,7 @@ Build Engine file (Segmentation)
 Testing Engine file (Segmentation)
 =============
 
-	$ ./yolov5_seg -d yolov5s.engine ../images
+	$ ./yolov5_seg -d yolov5s-seg.engine ../images
 	
 This will do inferencing over images and output will be saved in build directory.
 
