@@ -10,8 +10,11 @@ cp ../../yolov5s.wts .
 cmake ..
 make 
 
-# Build engine
+# Build engine - For Detection
 ./yolov5_det -s yolov5s.wts yolov5s.engine s
-
 # Test
 ./yolov5_det -d yolov5s.engine ../images
+
+# Build engine - For Segmentation
+./yolov5_seg -s yolov5s-seg.wts yolov5s-seg.engine s
+
