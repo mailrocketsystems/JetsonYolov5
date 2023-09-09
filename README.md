@@ -3,7 +3,7 @@ Running YoloV5 with TensorRT Engine on Jetson.
 
 This repository contains step by step guide to build and convert YoloV5 model into a TensorRT engine on Jetson. This has been tested on Jetson Nano or Jetson Xavier 
 
-Please install Jetpack OS version 4.6 as mentioned by Nvidia and follow below steps. Please follow each steps exactly mentioned in the video links below :
+Please install Jetpack OS version 4.6 as mentioned by Nvidia and follow below steps. Please follow each steps exactly mentioned in the video links below (Tutorials by mailrocketsystems): 
 
 Build YoloV5 TensorRT Engine on Jetson Nano: https://www.youtube.com/watch?v=ErWC3nBuV6k
 
