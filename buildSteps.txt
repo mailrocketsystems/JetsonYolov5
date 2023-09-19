@@ -1,8 +1,13 @@
-# Generate WTS file 
+# Generate WTS file - For Detection
 python3 gen_wts.py -w yolov5s.pt -o yolov5s.wts
+
+# Generate WTS file - For Segmentation
+python3 gen_wts.py -w yolov5s-seg.pt -o yolov5s-seg.wts
 
 # Cmake & Make 
 # If using custom model, make sure to update kNumClas in yolov5/src/config.h
+# For segmentation model don't forget to change the path to wts file in cp../../yolov5s.wts .
+# i.e. For segmentation use: cp../../yolov5s-seg.wts .
 cd yolov5/
 mkdir build
 cd build
@@ -10,8 +15,11 @@ cp ../../yolov5s.wts .
 cmake ..
 make 
 
-# Build engine
+# Build engine - For Detection
 ./yolov5_det -s yolov5s.wts yolov5s.engine s
-
 # Test
 ./yolov5_det -d yolov5s.engine ../images
+
+# Build engine - For Segmentation
+./yolov5_seg -s yolov5s-seg.wts yolov5s-seg.engine s
+
