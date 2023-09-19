@@ -126,6 +126,39 @@ This will do inferencing over images and output will be saved in build directory
 
 -----------------------------------------------------------------------------------------
 
+Generate wts file from pt file (Classification)
+=============
+Run below command to convert .pt file into .wts file 
+
+	$ cd JetsonYoloV5
+	$ python3 gen_wts.py -w yolov5s-cls.pt -o yolov5s-cls.wts -t cls
+	
+Make (Classification)
+=============
+Create a build directory inside yolov5. Copy and paste generated wts file into build directory and run below commands. If using custom model, make sure to update kClsNumClass in yolov5/src/config.h
+
+	$ cd yolov5/
+	$ mkdir build
+	$ cd build
+	$ cp ../../yolov5s-cls.wts .
+	$ cmake ..
+	$ make 
+	
+Build Engine file (Classification)
+=============
+
+    $ ./yolov5_cls -s yolov5s-cls.wts yolov5s-cls.engine s
+	
+
+Testing Engine file (Classification)
+=============
+
+	$ ./yolov5_cls -d yolov5s-cls.engine ../images
+	
+This will do inferencing over images and output will be saved in build directory.
+
+-----------------------------------------------------------------------------------------
+
 Python Object Detection
 =============
 Use `app_detection.py` to do inferencing on any video file or camera.
@@ -145,6 +178,18 @@ Use `app_segmentation.py` to do inferencing on any video file or camera.
 
 If you have custom model, make sure to update categories as per your classes in `app_segmentation.py` .
 Change the video path inside `app_segmentation.py` to test a different video.  
+
+-----------------------------------------------------------------------------------------
+
+Python Object Classification 
+=============
+Use `app_classification.py` to do inferencing on any video file or camera. 
+
+	$ python3 app_classification.py 
+
+If you have custom model, make sure to update categories as per your classes in `app_classification.py` .
+Change the video path inside `app_classification.py` to test a different video.  
+If you are running the base yolov5 classification model add the file imagenet_classes.txt from [Here](https://gist.github.com/ageitgey/4e1342c10a71981d0b491e1b8227328b)
 
 -----------------------------------------------------------------------------------------
 
